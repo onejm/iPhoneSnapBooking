@@ -1,0 +1,107 @@
+############## zhive ################
+
+# IDE and Editor
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS Files
+.DS_Store
+Thumbs.db
+Thumbs.db:encryptable
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archives
+*.zip
+*.gz
+*.tgz
+*.tar.gz
+*.tbz2
+*.bz2
+*.tar
+
+# Temporary files
+*.orig
+*.bak
+*.tmp
+*.swp
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Executables
+*.exe
+*.msi
+*.dmg
+*.dll
+
+# Django
+zhive/webapps/template/resources/*
+zhive/webapps/static/resources/*
+zhive/webapps/static/*/build/*
+zhive/webapps/static/zhive/sencha-*.log
+zhive/webapps/static/agent
+zhive/webapps/app_zhive/migrations/[0-9]*
+zhive/webapps/app_zhive/migrations/*/*
+zhive/webapps/app_zhive/migrations/*/[0-9]*
+zhive/webapps/app_zhive/migrations
+zhive/webapps/vue/package-lock.json
+zhive/webapps/vue/dist
+zhive/webapps/vue/src/assets/css
+zhive/webapps/zhive.png
+zhive/webapps/vue/yarn.lock
+zhive/webapps/django_init_data/django_init_data_new.json
+zhive/zhive/
+zhive-core/
+zhive/script/license/*_license.json
+zhive/etc/license.json
+zhive/etc/zhive_config.cfg
+zhive/eap
+zhive/bin/zhived
+
+
+# Vue.js
+node_modules
+dist
+dist-ssr
+coverage
+
+# Local env files
+.env.local
+.env.*.local
+
+
+# ElasticSearch and Kibana
+elasticsearch/
+elasticsearch-vip/
+kibana/
+
+
+# Libraries
+python
+openssl
+node
+gcc
+pgsql
+var
+nginx
+libffi
