@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.web
+    container_name: django_app
+    volumes:
+      - ./django_app:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - nginx
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: docker/Dockerfile.frontend
+    container_name: vue_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/frontend
+
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydatabase
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_server
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./frontend/dist:/usr/share/nginx/html
+
+volumes:
+  postgres_data:
