@@ -12,24 +12,25 @@ services:
     depends_on:
       - db
       - nginx
+    entrypoint: ["./wait-for-it.sh", "db:5432", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
 
   frontend:
     build:
-      context: ./frontend
-      dockerfile: docker/Dockerfile.frontend
+      context:  ./frontend/snap_booking
+      dockerfile: ../../docker/frontend.Dockerfile
     container_name: vue_frontend
     ports:
       - "3000:3000"
     volumes:
       - ./frontend:/frontend
+    command: npm run build
 
   db:
-    image: postgres:15
-    container_name: postgres_db
+    image: postgres
+    container_name: keevo
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydatabase
+      POSTGRES_PASSWORD: keevo
+      POSTGRES_DB: keevo
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
@@ -41,8 +42,10 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./frontend/dist:/usr/share/nginx/html
+    depends_on:
+      - frontend
 
 volumes:
   postgres_data:

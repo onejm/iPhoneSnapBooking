@@ -1,12 +1,20 @@
-FROM python:3.9-slim
+# Node.js 환경 설정
+FROM node:16
 
+# 작업 디렉토리 설정
 WORKDIR /app
 
-COPY ./backend /app
-COPY ./backend/requirements.txt /app/requirements.txt
+# 소스 코드 복사
+COPY ./ /app
 
-RUN pip install --no-cache-dir -r requirements.txt
+# 의존성 설치
+RUN npm install
 
-EXPOSE 8000
+# 빌드 실행
+RUN npm run build
 
-CMD ["gunicorn", "myproject.wsgi:application", "--bind", "0.0.0.0:8000"]
+# 포트 설정
+EXPOSE 3000
+
+# 애플리케이션 실행
+CMD ["npm", "run", "serve"]
